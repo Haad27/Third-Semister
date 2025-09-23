@@ -10,19 +10,18 @@ struct Books
     char subject[100];
     int book_id;
 };
- void printBook(struct Books b)
-    {
-        cout << "Book title : " << b.title << endl;
-        cout << "Book author : " << b.author << endl;
-        cout << "Book subject : " << b.subject << endl;
-        cout << "Book id : " << b.book_id << endl;
-    }
+void printBook(struct Books book)
+{
+    cout << "Book title : " << book.title << endl;
+    cout << "Book author : " << book.author << endl;
+    cout << "Book subject : " << book.subject << endl;
+    cout << "Book id : " << book.book_id << endl;
+}
 int main()
 {
 
-    Books Book1 = {"C++", "A", "C++", 1};
-    Books Book2 = {"C++", "B", "C++", 2};
-   
+    Books Book1({"C++", "A", "C++", 1});
+    Books Book2({"C++", "B", "C++", 2});
 
     printBook(Book1);
     printBook(Book2);

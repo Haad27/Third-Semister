@@ -30,7 +30,28 @@ int main()
     second->next = tail;
 
     tail->data = 3;
-    tail->next= nullptr;
+    tail->next = nullptr;
+
+    Node *middle = new Node();
+    middle->data = 100;
+    int sum = 0;
+    Node *temp = head;
+    while (temp != nullptr)
+    {
+        temp = temp->next;
+        sum++;
+    }
+    temp = head;
+    for (int i = 0; i < sum / 2; i++)
+    {
+        temp = temp->next;
+    }
+     
+    middle->next=temp->next;
+    temp-> next = middle;
+
+
+
 
     display(head);
 
