@@ -18,6 +18,22 @@ void display(Node *n)
         n = n->next;
     }
 }
+void insert(Node* head, int num) {
+    Node* newnode = new Node;
+    newnode->data = num;
+    newnode->next = nullptr;
+
+    if (head == nullptr) {   // if list is empty
+        head = newnode;
+    } else {
+        Node* temp = head;
+        while (temp->next != nullptr) {
+            temp = temp->next;
+        }
+        temp->next = newnode;
+    }
+}
+
 int main()
 {
     Node *head = new Node();
