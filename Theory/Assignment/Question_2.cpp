@@ -36,7 +36,7 @@ void displayUniverse(UniverseCoordinate** arr, int rows, int cols) {
             else
                 cout << "[--] ";
         }
-        cout << endl;
+        cout << endl;  
     }
 }
 
