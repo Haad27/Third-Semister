@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "d:/Documents/Third-Semister/Array/class",
-      "program": "d:/Documents/Third-Semister/Array/class/build/Debug/outDebug",
+      "cwd": "d:/Documents/Third-Semister/Theory/LinkL/doublyLinklist",
+      "program": "d:/Documents/Third-Semister/Theory/LinkL/doublyLinklist/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
