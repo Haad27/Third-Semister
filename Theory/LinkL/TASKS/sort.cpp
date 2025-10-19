@@ -143,7 +143,6 @@ bool palindrome(){
 
    while (curr!=NULL)
    {
-
     next=curr->next;
     curr->next=prev;
     prev=curr;
