@@ -24,7 +24,7 @@ void equeue(int value)
         front = rear = newnode;
         return;
     }
-    rear->next = newnode;
+    newnode->next = rear;
     rear = newnode;
 }
 
