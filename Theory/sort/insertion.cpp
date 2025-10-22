@@ -9,7 +9,6 @@ int main()
     int size = 5;
     int arr[size] = {2, 6, 1, 5, 2};
     int key;
-    //start from 1 bec the first element is aldready sorted
     for (int i = 1; i < size; i++)
     {
         key=arr[i];

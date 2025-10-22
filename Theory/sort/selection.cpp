@@ -15,11 +15,10 @@ void selection(int arr[], int size)
                 min = j;
             }
         }
-        if (min != i)
-        {
+       
             swap(arr[i], arr[min]);
-        }
-    }
+        
+    } 
 }
 int main()
 {
