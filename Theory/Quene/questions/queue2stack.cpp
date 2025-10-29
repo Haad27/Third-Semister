@@ -91,7 +91,7 @@ struct QueueUsingStacks {
         }
         s2.pop();
     }
-
+ 
     int front() {
         if (s2.empty()) {
             cout << "Queue is empty!\n";

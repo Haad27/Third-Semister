@@ -55,7 +55,7 @@ int main()
     insert(400);
 
     cout << "Doubly Linked List: ";
-    between(4000,2)
+    between(4000,2);
     display();
 
 
