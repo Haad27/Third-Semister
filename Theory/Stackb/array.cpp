@@ -14,7 +14,7 @@ public:
 
     Stack()
     {
-        int top = -1;
+         top = -1;
     }
     bool Isempty()
     {
@@ -22,7 +22,7 @@ public:
     }
     bool Isfull()
     {
-        return top = MAX - 1;
+        return top == MAX - 1;
     }
     void POP(){
         cout <<"the value " <<arr[top]<<"ïs removedd";
@@ -35,7 +35,7 @@ public:
     }
     void display(){
 
-        for (int i = 0; i < MAX; i++)
+        for (int i = top; i > 0; i--)
         {
             cout <<endl<<arr[i]<<" ";
         }
@@ -55,5 +55,7 @@ int main()
     s.POP();
     s.POP();
     s.POP();
+    s.display();
+
     return 0;
 }

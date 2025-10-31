@@ -28,7 +28,7 @@ int arr[]={1,2,3,4,5,6,7,8,9,10};
             low = mid+1;
         }
         else{
-            high= mid+1;
+            high= mid-1;
         }
         
     }

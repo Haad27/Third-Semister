@@ -15,9 +15,7 @@ void selection(int arr[], int size)
                 min = j;
             }
         }
-       
             swap(arr[i], arr[min]);
-        
     } 
 }
 int main()
