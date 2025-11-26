@@ -157,7 +157,7 @@ void testQuickSort(int arr[], int n) {
         qsComparisons = 0;
         qsSwaps = 0;
         quickSort(temp, 0, n - 1, type);
-
+      
         string pivot;
         if (type == 1) {
             pivot = "First";
