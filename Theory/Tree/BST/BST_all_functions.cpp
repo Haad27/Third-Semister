@@ -1,5 +1,3 @@
-
-
 #include <iostream>
 using namespace std;
 
@@ -107,8 +105,6 @@ Node* deleteNode(Node* root, int key) {
 
     return root;
 }
-
-
 
 Node* searchNode(Node* root, int key) {
     if (!root) return nullptr;

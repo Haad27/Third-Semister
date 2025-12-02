@@ -1,60 +1,60 @@
 #include <iostream>
 using namespace std;
 
-struct Node
-{
+struct Node {
     int data;
-    Node *next;
+    Node* next;
 };
 
-Node *head = NULL;
+Node* head = NULL;
 
-void check()
-{
-    Node *slow = head;
-    Node *fast = head;
-    while (fast != NULL && fast->next != NULL)
-    {
+void detectAndRemoveLoop() {
+    Node *slow = head, *fast = head;
+
+    while (fast != NULL && fast->next != NULL) {
         slow = slow->next;
         fast = fast->next->next;
 
-        if (slow == fast)
-        {
+        if (slow == fast) {
             cout << "Cycle detected!\n";
 
-            Node *ptr1 = head;
-            Node *ptr2 = slow;
-            int count1 = 1;
-            while (ptr1 != ptr2)
-            {
+            Node* ptr1 = head;
+            Node* ptr2 = slow;
+
+            int pos = 1;
+            while (ptr1 != ptr2) {
                 ptr1 = ptr1->next;
                 ptr2 = ptr2->next;
-                count1++;
+                pos++;
             }
-            cout << "Cycle starts at node with value: " << ptr1->data << endl;
-            cout << "the Node number is:  " << count1 << endl;
 
-            Node* loop_start = ptr1; 
-            Node* temp = head;
-            int count2 = 1;
-            while (temp->next != loop_start)
-            {
+            cout << "Loop starts at node with value: " << ptr1->data << endl;
+            cout << "Position in list: " << pos << endl;
+
+            Node* temp = ptr1;
+            while (temp->next != ptr1) {
                 temp = temp->next;
-                count2++;
             }
-            temp->next = NULL; 
 
-            cout << "Loop removed from node : " << count2 << " to Node " << count1 << endl;
+            temp->next = NULL;  
+   
+            int from = 0;
+            Node* tempFrom = head;
+            while (tempFrom != temp) {
+                tempFrom = tempFrom->next;
+                from++;
+            }
+            from++; 
 
+            cout << "loop removed from Node #" << from << " > Node #" << pos << "\n";
             return;
         }
     }
+
+    cout << "No cycle detected.\n";
 }
 
-int main()
-{
-
-    // Example list to test
+int main() {
     Node *n1 = new Node{11, NULL};
     Node *n2 = new Node{3, NULL};
     Node *n3 = new Node{8, NULL};
@@ -66,10 +66,11 @@ int main()
     n2->next = n3;
     n3->next = n4;
     n4->next = n5;
-    // point of cycle
+
+    // Creating cycle
     n5->next = n3;
 
-    check();
+    detectAndRemoveLoop();
 
     return 0;
 }
