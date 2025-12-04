@@ -62,6 +62,11 @@ void reverseInorder(Node *root)
     reverseInorder(root->left);
 }
 
+Node* findMax(Node* root) {
+    while (root && root->right)
+        root = root->right;
+    return root;
+}
 
 Node* findMin(Node* root) {
     while (root && root->left != NULL) {
@@ -115,6 +120,61 @@ Node* searchNode(Node* root, int key) {
         return searchNode(root->left, key);
     else
         return searchNode(root->right, key);
+}
+bool isBST(Node* root, int minVal, int maxVal) {
+    if (root == NULL) return true;
+
+    // Check current node
+    if (root->data <= minVal || root->data >= maxVal)
+        return false;
+
+    // Check subtrees with updated ranges
+    return isBST(root->left, minVal, root->data) &&
+           isBST(root->right, root->data, maxVal);
+}
+Node* inorderSuccessor(Node* root, Node* target) {
+    Node* succ = NULL;
+
+    while (root != NULL) {
+        if (target->data < root->data) {
+            succ = root;          // possible successor
+            root = root->left;
+        }
+        else if (target->data > root->data) {
+            root = root->right;
+        }
+        else {
+            // Node found
+            if (root->right) {
+                succ = findMin(root->right);
+            }
+            break;
+        }
+    }
+
+    return succ;
+}
+Node* inorderPredecessor(Node* root, Node* target) {
+    Node* pred = NULL;
+
+    while (root != NULL) {
+        if (target->data > root->data) {
+            pred = root;          // possible predecessor
+            root = root->right;
+        }
+        else if (target->data < root->data) {
+            root = root->left;
+        }
+        else {
+            // Node found
+            if (root->left) {
+                pred = findMax(root->left);
+            }
+            break;
+        }
+    }
+
+    return pred;
 }
 
 
