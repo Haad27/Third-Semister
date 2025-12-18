@@ -177,7 +177,21 @@ Node* inorderPredecessor(Node* root, Node* target) {
     return pred;
 }
 
+  int height(Node* root) {
+        if (!root) return 0;            // empty node has height 0
+        return 1 + max(height(root->left), height(root->right));
+    }
 
+    bool isBalanced(Node* root) {
+        if (!root) return true;        
+
+        int lh = height(root->left);  
+        int rh = height(root->right); 
+
+        if ((lh - rh) > 1) return false;  
+
+        return isBalanced(root->left) && isBalanced(root->right);
+    }
 int main()
 {
     Node *root = NULL;

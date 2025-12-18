@@ -45,24 +45,24 @@ int CountLeafNodes(Node* root) {
     if (!root->left && !root->right) return 1;
     return CountLeafNodes(root->left) + CountLeafNodes(root->right);
 }
-// class Solution {
-// public:
-//     int height(TreeNode* root) {
-//         if (!root) return 0;            // empty node has height 0
-//         return 1 + max(height(root->left), height(root->right));
-//     }
+class Solution {
+public:
+    int height(TreeNode* root) {
+        if (!root) return 0;            // empty node has height 0
+        return 1 + max(height(root->left), height(root->right));
+    }
 
-//     bool isBalanced(TreeNode* root) {
-//         if (!root) return true;         // empty tree is balanced
+    bool isBalanced(TreeNode* root) {
+        if (!root) return true;         // empty tree is balanced
 
-//         int lh = height(root->left);    // height of left subtree
-//         int rh = height(root->right);   // height of right subtree
+        int lh = height(root->left);    // height of left subtree
+        int rh = height(root->right);   // height of right subtree
 
-//         if ((lh - rh) > 1) return false;  // difference >1 → unbalanced
+        if ((lh - rh) > 1) return false;  // difference >1 → unbalanced
 
-//         return isBalanced(root->left) && isBalanced(root->right);
-//     }
-// };
+        return isBalanced(root->left) && isBalanced(root->right);
+    }
+};
 
 int main()
 {
