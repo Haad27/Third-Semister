@@ -172,7 +172,8 @@ int main()
     cout << "BFS using adjacency matrix: ";
     bfsMatrix(0, matrix, flag2);
 
-
+   cout <<"shorttest part ==\n";
+   bfsShortestPath(0,graph,n);
 
 
     return 0;
