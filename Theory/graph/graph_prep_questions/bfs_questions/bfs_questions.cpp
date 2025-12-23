@@ -3,8 +3,8 @@
 #include <vector>
 #include <queue>
 using namespace std;
-//task 1
-int count =0;
+// task 1
+int count = 0;
 void bfs_count(int start, vector<vector<int>> graph, vector<bool> flag)
 {
     queue<int> q;
@@ -53,52 +53,48 @@ void bfs(int start, vector<vector<int>> graph, vector<bool> flag)
         }
     }
 }
-//task2
-bool isConnected(int n , vector <vector<int>> graph){
-   vector<bool> flag (n,false);
-   bfs(n,graph,flag);
-   
-   for (int i = 0; i < n; i++)
-   {
-       if (flag[n]==false)
-       {
-       return false;
-       }
-       
-   }
-   return true;
+// task2
+bool isConnected(int n, vector<vector<int>> graph)
+{
+    vector<bool> flag(n, false);
+    bfs(n, graph, flag);
+
+    for (int i = 0; i < n; i++)
+    {
+        if (flag[n] == false)
+        {
+            return false;
+        }
+    }
+    return true;
 }
-//task4
-void bfsMatrix(int start , vector<vector<int>>&matrix, vector < bool > flag){
+// task4
+void bfsMatrix(int start, vector<vector<int>> &matrix, vector<bool> flag)
+{
     queue<int> q;
 
     q.push(start);
-    flag[start]=true;
+    flag[start] = true;
 
-
-    while (q.empty()==false)
+    while (q.empty() == false)
     {
         int num = q.front();
         q.pop();
 
-        cout << num <<" ";
+        cout << num << " ";
 
         for (int neighbor = 0; neighbor < matrix.size(); neighbor++)
         {
-            if (matrix[num][neighbor]==1 && flag[neighbor]==false)
+            if (matrix[num][neighbor] == 1 && flag[neighbor] == false)
             {
-               q.push(neighbor); 
-               flag[neighbor]=true;
+                q.push(neighbor);
+                flag[neighbor] = true;
             }
-            
         }
-        
     }
-    
-
 }
-//task5
-void bfsShortestPath(int start, vector<vector<int>>& graph, int n)
+// task5
+void bfsShortestPath(int start, vector<vector<int>> &graph, int n)
 {
     vector<int> dist(n, -1);
     queue<int> q;
@@ -124,7 +120,7 @@ void bfsShortestPath(int start, vector<vector<int>>& graph, int n)
     for (int i = 0; i < n; i++)
         cout << "Dist from " << start << " to " << i << " = " << dist[i] << endl;
 }
-int countComponents(int n, vector<vector<int>>& graph)
+int countComponents(int n, vector<vector<int>> &graph)
 {
     vector<bool> visited(n, false);
     int components = 0;
@@ -141,6 +137,23 @@ int countComponents(int n, vector<vector<int>>& graph)
 }
 int main()
 {
+    int n, m;
+    cout << "Enter number of nodes: ";
+    cin >> n;
+
+    cout << "Enter number of edges: ";
+    cin >> m;
+
+    vector<vector<int>> graph(n);
+
+    int u, v;
+    for (int i = 0; i < m; i++)
+    {
+        cin >> u >> v;
+        graph[u].push_back(v);
+        graph[v].push_back(u);
+    }
+    
 
     int n = 6;
     vector<vector<int>> graph(n);
@@ -155,40 +168,39 @@ int main()
     vector<bool> flag(n, false);
 
     bfs_count(0, graph, flag);
-    cout <<endl<< count;
-    //task3
+    cout << endl
+         << count;
+    // task3
     cout << "\nbfs components";
     for (int i = 0; i < n; i++)
     {
-        if (flag[i]==false)
+        if (flag[i] == false)
         {
-            bfs(i,graph,flag);
-            cout<<endl;
+            bfs(i, graph, flag);
+            cout << endl;
         }
-        
     }
-    // task 4 
-     int n2 = 6;
+    // task 4
+    int n2 = 6;
 
     // adjacency matrix
     vector<vector<int>> matrix =
-    {
-        {0, 1, 0, 0, 0, 0}, // 0
-        {1, 0, 1, 0, 0, 0}, // 1
-        {0, 1, 0, 0, 0, 0}, // 2
-        {0, 0, 0, 0, 1, 0}, // 3
-        {0, 0, 0, 1, 0, 0}, // 4
-        {0, 0, 0, 0, 0, 0}  // 5
-    };
+        {
+            {0, 1, 0, 0, 0, 0}, // 0
+            {1, 0, 1, 0, 0, 0}, // 1
+            {0, 1, 0, 0, 0, 0}, // 2
+            {0, 0, 0, 0, 1, 0}, // 3
+            {0, 0, 0, 1, 0, 0}, // 4
+            {0, 0, 0, 0, 0, 0}  // 5
+        };
 
     vector<bool> flag2(n2, false);
 
     cout << "BFS using adjacency matrix: ";
     bfsMatrix(0, matrix, flag2);
 
-   cout <<"shorttest part ==\n";
-   bfsShortestPath(0,graph,n);
-
+    cout << "shorttest part ==\n";
+    bfsShortestPath(0, graph, n);
 
     return 0;
 }
