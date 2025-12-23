@@ -124,7 +124,21 @@ void bfsShortestPath(int start, vector<vector<int>>& graph, int n)
     for (int i = 0; i < n; i++)
         cout << "Dist from " << start << " to " << i << " = " << dist[i] << endl;
 }
+int countComponents(int n, vector<vector<int>>& graph)
+{
+    vector<bool> visited(n, false);
+    int components = 0;
 
+    for (int i = 0; i < n; i++)
+    {
+        if (!visited[i])
+        {
+            bfs(i, graph, visited);
+            components++;
+        }
+    }
+    return components;
+}
 int main()
 {
 
