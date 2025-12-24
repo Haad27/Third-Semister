@@ -28,19 +28,17 @@ void selection(int arr[], int size)
         swap(arr[i], arr[min]);
     }
 }
-void insertion_Sort()
+void insertion_Sort(int arr[], int size)
 {
-    int size = 5;
-    int arr[size] = {2, 6, 1, 5, 2};
-    int key;
     for (int i = 1; i < size; i++)
     {
-        key = arr[i];
+        int key = arr[i];
         int j = i - 1;
+
         while (j >= 0 && arr[j] > key)
         {
             arr[j + 1] = arr[j];
-            j = j - 1;
+            j--;
         }
         arr[j + 1] = key;
     }
@@ -115,6 +113,7 @@ void quicksort(int arr[], int low, int high)
         quicksort(arr, pi + 1, high);
     }
 }
+
 int main()
 {
 
