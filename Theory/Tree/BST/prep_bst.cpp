@@ -156,42 +156,41 @@ bool isBST(Node *root, int minVal, int maxVal)
 {
     if (!root)
     {
-         return true;
+        return true;
     }
-    if (root->data<=minVal||root->data>=maxVal)
+    if (root->data <= minVal || root->data >= maxVal)
     {
         return false;
     }
 
-    return isBST(root->left,minVal,maxVal) && isBST(root->right,minVal,maxVal);
-    
-    
+    return isBST(root->left, minVal, maxVal) && isBST(root->right, minVal, maxVal);
 }
 
 Node *inorderSuccessor(Node *root, Node *target)
 {
-   Node* succ = NULL;
-   while (!root)
-   {
-    if (target->data < root->data)
+    Node *succ = NULL;
+    while (!root)
     {
-        succ=root;
-        root=root->left;
-    }
-    else if(target->data > root->data){
-     root=root->right;
-    }
-    else{
-
-        if (root->right)
+        if (target->data < root->data)
         {
-            succ=findMin(root->right);
+            succ = root;
+            root = root->left;
         }
-        break;
+        else if (target->data > root->data)
+        {
+            root = root->right;
+        }
+        else
+        {
+
+            if (root->right)
+            {
+                succ = findMin(root->right);
+            }
+            break;
+        }
     }
-    
-   }
-   return succ;
+    return succ;
 }
 
 Node *inorderPredecessor(Node *root, Node *target)
@@ -222,57 +221,74 @@ Node *inorderPredecessor(Node *root, Node *target)
 
     return pred;
 }
-int sumNodes(Node* root) {
-    if (!root) return 0;
+int sumNodes(Node *root)
+{
+    if (!root)
+        return 0;
     return root->data + sumNodes(root->left) + sumNodes(root->right);
 }
-int countLeaves(Node* root) {
-    if (!root) return 0;
-    if (!root->left && !root->right) return 1;
+int countLeaves(Node *root)
+{
+    if (!root)
+        return 0;
+    if (!root->left && !root->right)
+        return 1;
     return countLeaves(root->left) + countLeaves(root->right);
 }
 
-int height(Node *root)
+int hieght(Node *root)
 {
     if (!root)
-        return 0; // empty node has height 0
-    return 1 + max(height(root->left), height(root->right));
+    {
+        return 0;
+    }
+    return 1+ max(hieght(root->left),hieght(root->right));
 }
-
-bool isBalanced(Node *root)
-{
+bool isbalanced(Node*root){
     if (!root)
+    {
         return true;
+    }
 
-    int lh = height(root->left);
-    int rh = height(root->right);
-
-    if ((lh - rh) > 1)
+    int lt=hieght(root->left);
+    int rt=hieght(root->right);
+    if ((lt-rt) >1 )
+    {
         return false;
-
-    return isBalanced(root->left) && isBalanced(root->right);
+    }
+    return isbalanced(root->left) && isbalanced(root->right);
+    
 }
 #include <queue>
 // BFS using BST
 void levelOrder(Node *root)
 {
-    if (!root)
-        return;
+   if (!root)
+   {
+    return;
+   }
 
-    queue<Node *> q;
-    q.push(root);
-
-    while (!q.empty())
-    {
-        Node *node = q.front();
+   queue<Node*>q;
+   q.push(root);
+   while (q.empty()==false)
+   {
+        Node* num = q.front();
         q.pop();
-        cout << node->data << " ";
+       
+        cout << num->data;
 
-        if (node->left)
-            q.push(node->left);
-        if (node->right)
-            q.push(node->right);
-    }
+        if (num->left)
+        {
+             q.push(num->left);
+        } if (num->right)
+        {
+             q.push(num->right);
+        }
+        
+   }
+   
+
+   
 }
 // for the number of notes
 int countNodes(Node *root)
@@ -295,7 +311,6 @@ int rightSubtreeCount(Node *root)
         return 0;
     return countNodes(root->right);
 }
-
 
 int main()
 {

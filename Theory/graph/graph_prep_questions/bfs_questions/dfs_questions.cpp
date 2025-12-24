@@ -45,7 +45,7 @@ void dfs_recursion(int node, vector<vector<int>> &graph, vector<bool> &visited)
     }
 }
 
-int countComponentsDFS(int n, vector<vector<int>>& graph)
+int countComponentsDFS(int n, vector<vector<int>> &graph)
 {
     vector<bool> visited(n, false);
     int components = 0;
@@ -64,47 +64,44 @@ bool dfsCycle_undirected(int start, int parent, vector<vector<int>> &graph, vect
 {
     visited[start] = true;
 
-    for (int nieghbor : graph[start])
+    for (int neighbour : graph[start])
     {
-        if (visited[nieghbor] == false)
+        if (!visited[neighbour])
         {
-            if (dfsCycle_undirected(nieghbor,start, graph, visited))
+            if (dfsCycle_undirected(neighbour, start, graph, visited))
+                return true;
+        }
+        else if (neighbour != parent)
+        {
+            return true;
+        }
+    }
+
+    return false; 
+}
+
+bool dfsCycleDirected(int node, vector<bool> &parent, vector<vector<int>> &graph, vector<bool> &visited)
+{
+    visited[node] = true;
+    parent[node] = true;
+
+    for (int nieghbour : graph[node])
+    {
+        if (visited[nieghbour] == false)
+        {
+            if (dfsCycleDirected(nieghbour, parent, graph, visited))
             {
                 return true;
             }
-            else if (nieghbor != parent)
+            else if (parent[nieghbour])
             {
                 return true;
             }
         }
+        
+    }
+    parent[node] = false;
         return false;
-    }
-}
-bool dfsCycleDirected(int node, vector<bool> &parent, vector<vector<int>> &graph, vector<bool> &visited)
-{
-    visited[node]=true;
-    parent[node]=true;
-
-    for (int nieghbvor : graph[node])
-    {
-       if (visited[nieghbvor] ==false)
-       {
-       if (dfsCycleDirected(nieghbvor,parent,graph,visited))
-       {
-            return true;
-       }
-       else if (parent[nieghbvor])
-       {
-        return true;
-       }
-       
-       
-       }
-       
-    }
-    parent[node]=false;
-    return false;
-
 }
 
 int main()
@@ -140,7 +137,7 @@ int main()
     // ---- DFS Cycle Detection (Directed) ----
     vector<bool> visited_cycle_dir(n, false);
     vector<bool> recStack(n, false);
-    bool cycleDirected = dfsCycleDirected(0,recStack, graph, visited_cycle_dir);
+    bool cycleDirected = dfsCycleDirected(0, recStack, graph, visited_cycle_dir);
     cout << "Cycle in Directed Graph: " << (cycleDirected ? "Yes" : "No") << endl;
 
     return 0;

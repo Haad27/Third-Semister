@@ -149,8 +149,8 @@ Node *delete_node(Node *root, int value)
         root->data = temp->data;
         root->right = delete_node(root->right, temp->data);
     }
-        return root;
-    
+    return root;
+
     root->height = 1 + max(getHieght(root->left), getHieght(root->right));
     int balance = getbalance(root);
 
@@ -210,7 +210,7 @@ Node *searchNode(Node *root, int key)
     else
         return searchNode(root->right, key);
 }
-int sumNodes(Node* root)
+int sumNodes(Node *root)
 {
     if (!root)
         return 0;
@@ -223,9 +223,10 @@ void printLeaves(Node *root)
     if (!root)
         return;
 
-    if (!root->left && !root->right)
-        cout << root->data << " ";
-
+    if (root->left == NULL && root->right == NULL)
+    {
+        cout << root->data;
+    }
     printLeaves(root->left);
     printLeaves(root->right);
 }
@@ -241,14 +242,17 @@ int countLeaves(Node *root)
 {
     if (!root)
         return 0;
-    if (!root->left && !root->right)
-        return 1;
-    return countLeaves(root->left) + countLeaves(root->right);
+   if ( root->left==NULL && root->right==NULL)
+   {
+    return 1;
+   }
+   return countLeaves(root->left)+countLeaves(root->right);
 }
-int countInternalNodes(Node* root)
+int countInternalNodes(Node *root)
 {
-    if (!root || (!root->left && !root->right))
-        return 0;
+   
+    if(!root)return 0;
+    if(!root || root->left==NULL && root->right==NULL) return 0;
 
     return 1 + countInternalNodes(root->left) + countInternalNodes(root->right);
 }
@@ -257,13 +261,13 @@ void printLevel(Node *root, int level)
 {
     if (!root)
         return;
-    if (level == 1)
-        cout << root->data << " ";
-    else
+    if (level==1)
     {
-        printLevel(root->left, level - 1);
-        printLevel(root->right, level - 1);
+        cout << root->data;
     }
+    printLevel(root->left,level-1);
+    printLevel(root->right,level-1);
+    
 }
 
 int findMax(Node *root)

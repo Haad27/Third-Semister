@@ -132,6 +132,7 @@ bool isBST(Node* root, int minVal, int maxVal) {
     return isBST(root->left, minVal, root->data) &&
            isBST(root->right, root->data, maxVal);
 }
+
 Node* inorderSuccessor(Node* root, Node* target) {
     Node* succ = NULL;
 
