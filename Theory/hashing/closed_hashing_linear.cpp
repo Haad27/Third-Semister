@@ -5,7 +5,7 @@ using namespace std;
 class HashTable {
     int* table;
     int size;
-
+                                            
 public:
     HashTable(int s) {
         size = s;
@@ -16,8 +16,9 @@ public:
 
     void insert(int key) {
         int index = key % size;
+        
         while (table[index] != -1) {
-            index = (index + 1) % size;
+            index = (index + 1) % size; 
         }
         table[index] = key;
     }

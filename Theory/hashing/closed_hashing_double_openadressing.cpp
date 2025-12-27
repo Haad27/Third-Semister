@@ -32,7 +32,7 @@ public:
 
         table[(index + i * step) % size] = key;
     }
-
+  
     void display() {
         for (int i = 0; i < size; i++)
             cout << i << ": " << table[i] << endl;

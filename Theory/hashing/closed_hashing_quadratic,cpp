@@ -1,34 +1,57 @@
-
 #include <iostream>
 using namespace std;
 
-class HashTable {
-    int* table;
+class HashTable
+{
+    int *table;
     int size;
 
 public:
-    HashTable(int s) {
+    HashTable(int s)
+    {
         size = s;
         table = new int[size];
         for (int i = 0; i < size; i++)
             table[i] = -1;
     }
 
-    void insert(int key) {
+    void insert(int key)
+    {
         int index = key % size;
-        while (table[index] != -1) {
-            index = (index + 1) % size;
+        int i = 0;
+        int newIndex = index;
+
+        while (table[newIndex] != -1)
+        {
+            i++;
+            newIndex = (index + i * i) % size;
         }
+
+        table[newIndex] = key;
+    }
+       void insert_otherway(int key)
+    {
+        int index = key % size;
+        int i = 0;
+
+        while (table[index] != -1)
+        {
+            i++;
+            index = (key % size + i * i) % size;
+        }
+
         table[index] = key;
     }
 
-    void display() {
+    void display()
+    {
         for (int i = 0; i < size; i++)
             cout << i << ": " << table[i] << endl;
     }
 };
 
-int main() {
+int main()
+{
     HashTable ht(7);
     ht.insert(50);
     ht.insert(700);
