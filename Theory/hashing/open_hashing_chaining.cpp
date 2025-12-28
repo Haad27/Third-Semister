@@ -27,7 +27,7 @@ public:
     void remove(int key)
     {
         int index = hashFunction(key);
-        table[index].remove(key); 
+        table[index].remove(key);
     }
 
     bool search(int key)
@@ -39,6 +39,30 @@ public:
                 return true;
         }
         return false;
+    }
+    int collisions(int key)
+    {
+        int index = hashFunction(key);
+        return table[index].size(); // returns # elements already there
+    }
+    int totalCollisions()
+    {
+        int total = 0;
+        for (int i = 0; i < size; i++)
+        {
+            if (table[i].size() > 1)
+                total += table[i].size() - 1; // each extra element is a collision
+        }
+        return total;
+    }
+
+    int maxInChain(int key)
+    {
+        int index = hashFunction(key);
+        int maxVal = 0;
+        for (int x : table[index])
+            maxVal = max(maxVal, x);
+        return maxVal;
     }
 
     void display()

@@ -16,7 +16,7 @@ public:
     int hash1(int key) {
         return key % size;
     }
-
+ 
     int hash2(int key) {
         return 1 + (key % (size - 1));
     }
