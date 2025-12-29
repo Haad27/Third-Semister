@@ -171,7 +171,7 @@ bool isBST(Node *root, int minVal, int maxVal)
 Node *inorderSuccessor(Node *root, Node *target)
 {
    Node* succ = NULL;
-   while (!root)
+   while (root)
    {
     if (target->data < root->data)
     {
@@ -181,6 +181,7 @@ Node *inorderSuccessor(Node *root, Node *target)
     else if(target->data > root->data){
      root=root->right;
     }
+    //this excude when all the above conditions fail
     else{
 
         if (root->right)
@@ -198,7 +199,7 @@ Node *inorderPredecessor(Node *root, Node *target)
 {
     Node *pred = NULL;
 
-    while (root != NULL)
+    while (root)
     {
         if (target->data > root->data)
         {

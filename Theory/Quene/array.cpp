@@ -13,6 +13,7 @@ bool isfull(){
 
     
 }
+
 bool isempty(){
     return (front ==-1 || front>rear);
 }
