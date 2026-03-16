@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include <stack>
+#include <queue>
 using namespace std;
 // task 1
 void dfs(int start, vector<vector<int>> graph, vector<bool> flag)
@@ -77,7 +78,7 @@ bool dfsCycle_undirected(int start, int parent, vector<vector<int>> &graph, vect
         }
     }
 
-    return false; 
+    return false;
 }
 
 bool dfsCycleDirected(int node, vector<bool> &parent, vector<vector<int>> &graph, vector<bool> &visited)
@@ -98,10 +99,38 @@ bool dfsCycleDirected(int node, vector<bool> &parent, vector<vector<int>> &graph
                 return true;
             }
         }
-        
     }
     parent[node] = false;
-        return false;
+    return false;
+}
+
+bool bfsCycleUndirected(int start, vector<int> graph[], vector<bool> &visited)
+{
+    queue<pair<int, int>> q;
+    visited[start] = true;
+    q.push({start, -1});
+
+    while (!q.empty())
+    {
+        int node = q.front().first;
+        int parent = q.front().second;
+        q.pop();
+
+        for (int neighbour : graph[node])
+        {
+            if (!visited[neighbour])
+            {
+                visited[neighbour] = true;
+                q.push({neighbour, node});
+            }
+            else if (neighbour != parent)
+            {
+                return true;
+            }
+        }
+    }
+
+    return false;
 }
 
 int main()

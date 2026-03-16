@@ -137,22 +137,22 @@ int countComponents(int n, vector<vector<int>> &graph)
 }
 int main()
 {
-    int n, m;
-    cout << "Enter number of nodes: ";
-    cin >> n;
+    // int n, m;
+    // cout << "Enter number of nodes: ";
+    // cin >> n;
 
-    cout << "Enter number of edges: ";
-    cin >> m;
+    // cout << "Enter number of edges: ";
+    // cin >> m;
 
-    vector<vector<int>> graph(n);
+    // vector<vector<int>> graph(n);
 
-    int u, v;
-    for (int i = 0; i < m; i++)
-    {
-        cin >> u >> v;
-        graph[u].push_back(v);
-        graph[v].push_back(u);
-    }
+    // int u, v;
+    // for (int i = 0; i < m; i++)
+    // {
+    //     cin >> u >> v;
+    //     graph[u].push_back(v);
+    //     graph[v].push_back(u);
+    // }
     
 
     int n = 6;

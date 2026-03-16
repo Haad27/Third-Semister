@@ -153,7 +153,7 @@ void minmax(Node *root)
     int max = root->data;
 }
 bool isBST(Node *root, int minVal, int maxVal)
-{
+{ 
     if (!root)
     {
          return true;
